@@ -26,6 +26,8 @@ def mine_block(k, prev_hash, transactions):
         nonce = str(nonce_int).encode('utf-8')
 
         block_data = prev_hash + tx_bytes + nonce
+        hash_bytes = hashlib.sha256(block_data).digest()
+        
         hash_int = int.from_bytes(hash_bytes, 'big')
 
         if hash_int & ((1 << k) - 1) == 0:
